@@ -24,9 +24,10 @@ public class RegisterServlet extends HttpServlet {
         }
 
         // 3. Database Connection Details
-        String dbUrl = "jdbc:mysql://localhost:3306/tamil_kadhavu_db";
-        String dbUser = "root";
-        String dbPass = "root"; // Ensure this matches your MySQL password
+        // // 3. Database Connection Details (REPLACE YOUR OLD LINES 27-29)
+        String dbUrl = System.getenv("DB_URL");
+        String dbUser = System.getenv("DB_USER");
+        String dbPass = System.getenv("DB_PASSWORD");// Ensure this matches your MySQL password
 
         Connection con = null;
         try {
