@@ -23,18 +23,12 @@ public class RegisterServlet extends HttpServlet {
             status = "pending";
         }
 
-        // 3. Database Connection Details
-        // // 3. Database Connection Details (REPLACE YOUR OLD LINES 27-29)
-        String dbUrl = System.getenv("DB_URL");
-        String dbUser = System.getenv("DB_USER");
-        String dbPass = System.getenv("DB_PASSWORD");// Ensure this matches your MySQL password
-
         Connection con = null;
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection(dbUrl, dbUser, dbPass);
+            // Use the new DBConnection class instead of hardcoding strings here
+            con = DBConnection.getConnection();
             
-            // 4. SQL Query (Matching your newly altered table)
+            // 3. SQL Query (Ensure column names match your TiDB table)
             String query = "INSERT INTO users (name, email, password, role, status) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement ps = con.prepareStatement(query);
             ps.setString(1, name);
@@ -43,23 +37,22 @@ public class RegisterServlet extends HttpServlet {
             ps.setString(4, role);
             ps.setString(5, status);
             
-         // ... inside RegisterServlet.java doPost ...
-
             int result = ps.executeUpdate();
 
             if (result > 0) {
                 if ("teacher".equalsIgnoreCase(role)) {
-                    // Teachers go to a "Please Wait" page
-                    response.sendRedirect("PendingVerification.html");
+                    // Added "pages/" prefix so Render finds the file
+                    response.sendRedirect("pages/PendingVerification.html");
                 } else {
-                    // Students go straight to Login
-                    response.sendRedirect("Login.html?register=success");
+                    // Added "pages/" prefix so Render finds the file
+                    response.sendRedirect("pages/Login.html?register=success");
                 }
             } else {
                 response.sendRedirect("Register.html?error=failed");
             }
         } catch (Exception e) {
             e.printStackTrace();
+            // If the database fails, we stay on the Register page with an error
             response.sendRedirect("Register.html?error=server");
         } finally {
             try { if(con != null) con.close(); } catch(SQLException se) { se.printStackTrace(); }
