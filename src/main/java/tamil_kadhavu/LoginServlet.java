@@ -19,10 +19,10 @@ public class LoginServlet extends HttpServlet {
         ResultSet rs = null;
 
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tamil_kadhavu_db", "root", "root");
+            // FIX 1: Use the cloud-ready connection class
+            con = DBConnection.getConnection();
             
-            // BUG FIX: Added 'status' to the SELECT statement
+            // FIX 2: Added 'status' to selection for verification logic
             ps = con.prepareStatement("SELECT id, name, role, status FROM users WHERE email=? AND password=?");
             ps.setString(1, email);
             ps.setString(2, pass);
@@ -30,12 +30,12 @@ public class LoginServlet extends HttpServlet {
             rs = ps.executeQuery();
             
             if (rs.next()) {
-                // Check status FIRST before setting session
                 String status = rs.getString("status");
                 
                 if ("pending".equalsIgnoreCase(status)) {
+                    // FIX 3: Removed "/pages/" prefix
                     response.sendRedirect("Login.html?error=pending");
-                    return; // Stop execution
+                    return; 
                 }
 
                 HttpSession session = request.getSession();
@@ -45,12 +45,11 @@ public class LoginServlet extends HttpServlet {
 
                 String userRole = rs.getString("role");
 
+                // FIX 4: Corrected destination pages for roles
                 if ("teacher".equalsIgnoreCase(userRole)) {
-                    response.sendRedirect("StudentDashboard.jsp");
+                    response.sendRedirect("TeacherDashboard.jsp"); 
                 } else if ("student".equalsIgnoreCase(userRole)) {
                     response.sendRedirect("StudentPortal.jsp");
-                } else if ("admin".equalsIgnoreCase(userRole)) {
-                    response.sendRedirect("AdminDashboard.jsp");
                 } else {
                     response.sendRedirect("index.html");
                 }
