@@ -42,10 +42,10 @@ public class RegisterServlet extends HttpServlet {
             if (result > 0) {
                 if ("teacher".equalsIgnoreCase(role)) {
                     // Added "pages/" prefix so Render finds the file
-                    response.sendRedirect("pages/PendingVerification.html");
+                    response.sendRedirect("PendingVerification.html");
                 } else {
                     // Added "pages/" prefix so Render finds the file
-                    response.sendRedirect("pages/Login.html?register=success");
+                    response.sendRedirect("Login.html?register=success");
                 }
             } else {
                 response.sendRedirect("Register.html?error=failed");
