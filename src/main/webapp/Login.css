@@ -1,0 +1,168 @@
+/* --- 1. Global Resets --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+:root {
+    --red: #FF0000;
+    --grey: #B3B3B3;
+    --black: #000000;
+    --card-bg: #111111;
+}
+
+body {
+    background-color: #000; /* Solid Black Background */
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column; /* Vertical stack: Header -> Main -> Footer */
+}
+
+/* --- 2. Header / Navbar --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    background-color: #000;
+    border-bottom: 2px solid #ff0000; /* The Red Line from your logo */
+}
+
+.logo-text { font-size: 24px; font-weight: 700; color: var(--grey); }
+.red-text { color: var(--red); }
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-section img {
+    height: 45px; /* Adjust based on your logo shape */
+    width: auto;
+}
+
+
+
+nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: 0.3s;
+}
+
+nav a:hover, nav a.active {
+    color: #ff0000;
+}
+
+.register-btn {
+    background-color: #ff0000;
+    color: white !important;
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* --- 3. Centering Logic --- */
+.login-wrapper {
+    flex: 1; /* Takes all available space between header and footer */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center;     /* Center vertically */
+    padding: 40px 20px;
+}
+
+.login-card {
+    background-color: #111; /* Dark grey card for contrast */
+    padding: 40px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(255, 0, 0, 0.15); /* Red shadow glow */
+}
+
+/* --- 4. Form Elements --- */
+.login-card h2 {
+    margin-bottom: 8px;
+    font-size: 1.8rem;
+}
+
+.login-card p {
+    color: #888;
+    margin-bottom: 25px;
+    font-size: 0.9rem;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+input {
+    width: 100%;
+    padding: 14px;
+    background-color: #222;
+    border: 1px solid #333;
+    border-radius: 6px;
+    color: white;
+    outline: none;
+    transition: 0.3s;
+}
+
+input:focus {
+    border-color: #ff0000;
+}
+
+.login-submit {
+    width: 100%;
+    padding: 14px;
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-submit:hover {
+    background-color: #cc0000;
+}
+
+/* --- 5. Links & Footer --- */
+.footer-links {
+    margin-top: 25px;
+    font-size: 0.85rem;
+}
+
+.footer-links p {
+    margin-bottom: 5px;
+}
+
+.footer-links a {
+    color: #ff0000;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    padding: 20px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #444;
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | தமிழ் கதவு</title>
+    <link rel="stylesheet" href="Register.css?v=1">
+    <link rel="icon" type="image/x-icon" href="./images/tamil_kadhavu.jpg">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo-section">
+            <img src="./images/tamil_kadhavu.jpg" alt="Logo">
+            <div class="logo-text">
+                <span class="grey-text">தமிழ்</span> <span class="red-text">கதவு</span>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="AboutUs.html">About Us</a></li>
+                <li><a href="Login.html">Login</a></li>
+                <li><a href="Register.html" class="active-link">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-container">
+        <div class="register-card">
+            <h2>புதிய கணக்கு (Register)</h2>
+            <p>Please fill in your details to join us</p>
+
+            <form action="RegisterServlet" method="post">
+                <div class="input-box">
+                    <input type="text" name="name" placeholder="Full Name" required>
+                </div>
+                
+                <div class="input-box">
+                    <input type="email" name="email" placeholder="Email Address" required>
+                </div>
+
+                <div class="input-box">
+                    <select name="user_type" required>
+                        <option value="" disabled selected>I am a...</option>
+                        <option value="student">மாணவர் (Student)</option>
+                        <option value="teacher">ஆசிரியர் (Teacher)</option>
+                    </select>
+                </div>
+
+                <div class="input-box">
+                    <input type="password" name="password" placeholder="Password" required>
+                </div>
+
+                <button type="submit" class="submit-btn">Create Account</button>
+            </form>
+
+            <div class="login-link">
+                Already have an account? <a href="Login.html">Login Here</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Tamil Kadhavu. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

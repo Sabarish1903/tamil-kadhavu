@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | தமிழ் கதவு</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mukta+Malar:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="ContactUs.css">
+    <link rel="icon" type="image/x-icon" href="./images/tamil_kadhavu.jpg">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo-container">
+                <img src="images/tamil_kadhavu.jpg" alt="Logo" class="nav-logo">
+                <div class="logo-text">
+                    <span class="grey-text">தமிழ்</span> <span class="red-text">கதவு</span>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="AboutUs.html">About Us</a></li>
+                <li><a href="ContactUs.html" class="active">Contact</a></li>
+                <li><a href="login.html" class="btn-login">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="contact-container">
+        <div class="contact-box">
+            <div class="contact-info">
+                <h2>Let's Talk Tamil</h2>
+                <p>Have questions about our courses or want to book a demo? Reach out to us!</p>
+                
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <span>Email Us</span>
+                        <p>tamilkadhavu@gmail.com</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <span>Call/WhatsApp</span>
+                        <p>+91 97911 23898</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <i class="fas fa-location-dot"></i>
+                    <div>
+                        <span>Location</span>
+                        <p>Patel St, West Mambalam, Chennai, Tamil Nadu 600033</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <form action="ContactServlet" method="POST">
+                    <div class="input-group">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="input-group">
+                        <select name="subject">
+                            <option value="demo">Book a Free Demo</option>
+                            <option value="course">Course Inquiry</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <textarea name="message" rows="5" placeholder="Your Message in Tamil or English..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

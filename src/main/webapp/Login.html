@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login | தமிழ் கதவு</title>
+<link rel="stylesheet" href="Login.css">
+<link rel="icon" type="image/x-icon" href="./images/tamil_kadhavu.jpg">
+</head>
+<body>
+
+	<header class="navbar">
+		<div class="logo-section">
+			<img src="./images/tamil_kadhavu.jpg" alt="Tamil Kadhavu Logo">
+			<div class="logo-text">
+				<span class="grey-text">தமிழ்</span> <span class="red-text">கதவு</span>
+			</div>
+		</div>
+		<nav>
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="AboutUs.html">About Us</a></li>
+				<li><a href="Login.html" class="active">Login</a></li>
+				<li><a href="Register.html" class="register-btn">Register</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<main class="login-wrapper">
+		<div class="login-card">
+			<h2>உள்நுழை (Login)</h2>
+			<p>Welcome back to Tamil Kadhavu</p>
+
+			<script>
+				const urlParams = new URLSearchParams(window.location.search);
+				if (urlParams.get('error') === 'pending') {
+					document
+							.write('<p style="color: #FFD700; margin-bottom: 10px;">Your teacher account is awaiting admin approval. Please check back later.</p>');
+				}
+			</script>
+
+			<form action="LoginServlet" method="post">
+				<div class="input-group">
+					<input type="email" name="email" placeholder="Email Address"
+						required>
+				</div>
+				<div class="input-group">
+					<input type="password" name="password" placeholder="Password"
+						required>
+				</div>
+				<button type="submit" class="login-submit">Login</button>
+			</form>
+
+			<div class="footer-links">
+				<p>புதிய கணக்கை உருவாக்க (No account?)</p>
+				<a href="Register.html">Register Here</a>
+			</div>
+		</div>
+	</main>
+
+	<footer>
+		<p>&copy; 2026 Tamil Kadhavu. All Rights Reserved.</p>
+	</footer>
+
+
+
+</body>
+</html>

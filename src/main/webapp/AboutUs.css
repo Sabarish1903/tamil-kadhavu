@@ -1,0 +1,120 @@
+/* --- Global & Theme --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Mukta Malar', sans-serif;
+}
+
+body {
+    background-color: #000;
+    color: #fff;
+    line-height: 1.8;
+}
+
+/* --- Navbar (Consistent with index) --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 6%;
+    background-color: #000;
+    border-bottom: 2px solid #FF0000;
+    height: 80px;
+}
+
+.logo-container { display: flex; align-items: center; gap: 15px; text-decoration: none; }
+.nav-logo { height: 50px; width: 50px; border-radius: 50%; border: 2px solid #FF0000; }
+.logo-text { font-size: 24px; font-weight: 700; color: #B3B3B3; }
+.red-text { color: #FF0000; }
+.nav-links { list-style: none; display: flex; gap: 25px; }
+.nav-links a { text-decoration: none; color: #fff; }
+.nav-links a.active { color: #FF0000; font-weight: bold; }
+
+/* --- Page Header --- */
+.page-title {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(to bottom, #111, #000);
+}
+
+.page-title h1 {
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+}
+
+.divider { color: #FF0000; margin: 0 15px; }
+
+/* --- Poetic Grid Layout --- */
+.content-wrapper { padding: 40px 8%; }
+
+.philosophy-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    margin-bottom: 80px;
+}
+
+.column { display: flex; flex-direction: column; gap: 30px; }
+
+.topic h3 {
+    color: #FF0000;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #333;
+    display: inline-block;
+}
+
+.topic p { color: #ccc; font-style: italic; }
+
+.tamil-col .topic h3 { color: #B3B3B3; border-bottom: 1px solid #FF0000; }
+
+/* --- Mission Statement Box --- */
+.mission-statement {
+    background-color: #0a0a0a;
+    border: 1px solid #222;
+    border-top: 4px solid #FF0000;
+    padding: 50px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.flower-icon {
+    font-size: 40px;
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #000;
+    padding: 0 15px;
+}
+
+.mission-box h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #FF0000;
+}
+
+.dual-text {
+    display: flex;
+    gap: 40px;
+}
+
+.lang-block { flex: 1; }
+.lang-block p { margin-bottom: 20px; font-size: 1.1rem; }
+
+/* --- Footer --- */
+.about-footer {
+    text-align: center;
+    padding: 40px;
+    border-top: 1px solid #222;
+    color: #666;
+}
+
+/* --- Responsive --- */
+@media (max-width: 800px) {
+    .philosophy-grid, .dual-text {
+        grid-template-columns: 1fr;
+        flex-direction: column;
+    }
+}

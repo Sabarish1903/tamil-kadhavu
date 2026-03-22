@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tamil Kadhavu | தமிழ் கதவு</title>
+<link
+	href="https://fonts.googleapis.com/css2?family=Mukta+Malar:wght@300;400;700&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/x-icon" href="./images/tamil_kadhavu.jpg">
+</head>
+<body>
+
+	<div id="birthday-overlay"
+		style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #050a0f; z-index: 99999; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px;">
+		<div
+			style="font-size: 6rem; margin-bottom: 20px; animation: float 3s ease-in-out infinite;">🎁</div>
+		<h1
+			style="color: #4A90E2; font-size: 3rem; margin-bottom: 10px; font-family: 'Mukta Malar', sans-serif;">இனிய
+			பிறந்தநாள் வாழ்த்துகள்!</h1>
+		<p
+			style="color: white; font-size: 1.4rem; margin-bottom: 40px; opacity: 0.9;">Your
+			dream "Tamil Kadhavu" website is here, Explore everything.</p>
+		<button onclick="closeSurprise()"
+			style="background: #4A90E2; color: white; padding: 18px 45px; border: none; border-radius: 50px; font-weight: bold; cursor: pointer; font-size: 1.3rem; box-shadow: 0 0 30px rgba(74, 144, 226, 0.4);">
+			Enter Your Dream Portal</button>
+	</div>
+
+	<header class="main-header">
+		<nav class="navbar">
+			<a href="index.html" class="logo-container"> <img
+				src="images/tamil_kadhavu.jpg" alt="Logo" class="nav-logo">
+				<div class="logo-text">
+					<span class="grey-text">தமிழ்</span> <span class="red-text">கதவு</span>
+				</div>
+			</a>
+
+			<div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+
+			<ul class="nav-links" id="navLinks">
+				<li><a href="index.html" class="active">Home</a></li>
+				<li><a href="AboutUs.html">About Us</a></li>
+				<li><a href="Login.html" class="btn-login">Login</a></li>
+				<li><a href="Register.html" class="btn-register">Register</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<section class="hero">
+		<div class="hero-content">
+			<h1>
+				நிதிமிக்கவர் பொற்குவை தாரீர்; <br> <span class="highlight">நிதியற்றவர்
+					கல்வி கற்பிப்பீர்.</span>
+			</h1>
+			<p>Master the world’s oldest living language through personalized
+				tutoring inspired by Mahakavi Bharathiyar.</p>
+			<div class="hero-btns">
+				<a href="Register.html" class="btn-primary">Start Learning</a> <a
+					href="#contact-section" class="btn-secondary">Contact Us</a>
+			</div>
+		</div>
+	</section>
+
+	<section id="contact-section" class="contact-area">
+		<div class="contact-card">
+			<h2>தொடர்பு கொள்ள (Contact Us)</h2>
+			<p class="subtitle">Have a question? We'd love to hear from you.</p>
+
+			<form action="ContactServlet" method="POST" class="contact-form">
+				<div class="input-row">
+					<input type="text" name="name" placeholder="Name" required>
+					<input type="email" name="email" placeholder="Email" required>
+				</div>
+				<textarea name="message" placeholder="How can we help you?" rows="4"
+					required></textarea>
+				<button type="submit" class="send-btn">Send Message</button>
+			</form>
+		</div>
+	</section>
+
+	<footer class="site-footer">
+		<div class="footer-line"></div>
+		<p>© 2026 Tamil Kadhavu. All Rights Reserved.</p>
+		<div class="footer-contact-links">
+			<a href="mailto:tamilkadhavu@gmail.com">tamilkadhavu@gmail.com</a> |
+			<span>+91 97911 23898</span>
+		</div>
+	</footer>
+
+	<script>
+    // TRIGGER LOGIC: Only shows if URL has ?gift=open
+    window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('gift') === 'open') {
+            document.getElementById('birthday-overlay').style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevents scrolling while gift is open
+        }
+    };
+
+    function closeSurprise() {
+        const overlay = document.getElementById('birthday-overlay');
+        overlay.style.transition = 'opacity 1s ease, transform 1s ease';
+        overlay.style.opacity = '0';
+        overlay.style.transform = 'scale(1.1)';
+        setTimeout(() => {
+            overlay.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Re-enables scrolling
+        }, 1000);
+    }
+</script>
+
+</body>
+</html>

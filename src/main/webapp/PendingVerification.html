@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification Pending | தமிழ் கதவு</title>
+    <link rel="stylesheet" href="Register.css">
+    <link rel="icon" type="image/x-icon" href="./images/tamil_kadhavu.jpg">
+    <style>
+        /* Centering Logic */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .pending-card {
+            background-color: #111;
+            padding: 40px;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(255, 0, 0, 0.2);
+            border: 1px solid #222;
+        }
+
+        /* Logo and Name Styles */
+        .brand-section {
+            margin-bottom: 30px;
+        }
+
+        .brand-section img {
+            height: 60px;
+            width: auto;
+            margin-bottom: 10px;
+        }
+
+        .brand-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .grey-text { color: #bbb; }
+        .red-text { color: #ff0000; }
+
+        .icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        h2 { color: #fff; margin-bottom: 15px; }
+        p { color: #aaa; line-height: 1.6; font-size: 0.95rem; }
+        
+        .btn-home {
+            display: inline-block;
+            margin-top: 30px;
+            color: #ff0000;
+            text-decoration: none;
+            font-weight: bold;
+            border: 1px solid #ff0000;
+            padding: 10px 25px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .btn-home:hover {
+            background-color: #ff0000;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="pending-card">
+        <div class="brand-section">
+            <img src="./images/tamil_kadhavu.jpg" alt="Logo">
+            <div class="brand-name">
+                <span class="grey-text">தமிழ்</span> <span class="red-text">கதவு</span>
+            </div>
+        </div>
+
+        <span class="icon">⏳</span>
+        
+        <h2>சரிபார்ப்பு நிலுவையில் உள்ளது</h2>
+        <p>Your registration was successful!</p>
+        
+        <hr style="border: 0; border-top: 1px solid #333; margin: 20px 0;">
+        
+        <p>As a <strong>Teacher</strong>, your profile must be verified by the Admin.</p>
+        <p>Once verified, you will receive an <strong>email</strong> and gain access to the dashboard.</p>
+
+        <a href="index.html" class="btn-home">Return to Home</a>
+    </div>
+
+</body>
+</html>

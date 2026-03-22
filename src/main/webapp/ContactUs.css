@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Mukta Malar', sans-serif;
+}
+
+body {
+    background-color: #000;
+    color: #fff;
+    min-height: 100vh;
+}
+
+/* Navbar (Standardized) */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 6%;
+    background-color: #000;
+    border-bottom: 2px solid #FF0000;
+    height: 80px;
+}
+
+.logo-container { display: flex; align-items: center; gap: 15px; text-decoration: none; }
+.nav-logo { height: 50px; width: 50px; border-radius: 50%; border: 2px solid #FF0000; }
+.logo-text { font-size: 24px; font-weight: 700; color: #B3B3B3; }
+.red-text { color: #FF0000; }
+.nav-links { list-style: none; display: flex; gap: 25px; }
+.nav-links a { text-decoration: none; color: #fff; }
+.nav-links a.active { color: #FF0000; font-weight: bold; }
+
+/* Contact Layout */
+.contact-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 6%;
+    min-height: calc(100vh - 80px);
+}
+
+.contact-box {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    background: #111;
+    border-radius: 15px;
+    overflow: hidden;
+    max-width: 1000px;
+    width: 100%;
+    border: 1px solid #222;
+}
+
+/* Info Side */
+.contact-info {
+    background: linear-gradient(135deg, #FF0000 0%, #800000 100%);
+    padding: 50px;
+    color: white;
+}
+
+.contact-info h2 { font-size: 2.5rem; margin-bottom: 20px; }
+.contact-info p { margin-bottom: 40px; opacity: 0.9; }
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.info-item i { font-size: 24px; color: #fff; }
+.info-item span { display: block; font-weight: bold; color: #ffd700; }
+
+/* Form Side */
+.contact-form {
+    padding: 50px;
+    background: #0a0a0a;
+}
+
+.input-group { margin-bottom: 20px; }
+
+input, select, textarea {
+    width: 100%;
+    padding: 15px;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: #fff;
+    border-radius: 5px;
+    outline: none;
+}
+
+input:focus, textarea:focus { border-color: #FF0000; }
+
+.btn-submit {
+    width: 100%;
+    padding: 15px;
+    background: #FF0000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-submit:hover { background: #cc0000; transform: translateY(-2px); }
+
+/* Responsive */
+@media (max-width: 800px) {
+    .contact-box { grid-template-columns: 1fr; }
+}
