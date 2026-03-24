@@ -14,15 +14,15 @@ public class UpdatePortalServlet extends HttpServlet {
         String newQuiz = request.getParameter("newQuiz");
         String newAns = request.getParameter("newAns");
 
-        // Step 1: Define connection outside to ensure closure
         Connection con = null;
         PreparedStatement ps = null;
+        PreparedStatement psInsert = null;
 
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tamil_kadhavu_db", "root", "root");
+            // FIX 1: Use the cloud-ready connection
+            con = DBConnection.getConnection();
             
-            // Step 2: Use a clean Update query
+            // Step 2: Update the existing quiz record
             String sql = "UPDATE portal_updates SET daily_quiz = ?, quiz_answer = ? WHERE id = 1";
             ps = con.prepareStatement(sql);
             ps.setString(1, newQuiz);
@@ -30,22 +30,24 @@ public class UpdatePortalServlet extends HttpServlet {
             
             int rows = ps.executeUpdate();
             
-            // Step 3: If for some reason ID 1 was deleted, re-insert it
+            // Step 3: If ID 1 doesn't exist (e.g., first time using TiDB), create it
             if (rows == 0) {
-                PreparedStatement psInsert = con.prepareStatement(
+                psInsert = con.prepareStatement(
                     "INSERT INTO portal_updates (id, daily_quiz, quiz_answer) VALUES (1, ?, ?)");
                 psInsert.setString(1, newQuiz);
                 psInsert.setString(2, newAns);
                 psInsert.executeUpdate();
             }
 
+            // Redirect back to the dashboard with success
             response.sendRedirect("StudentDashboard.jsp?portalUpdate=success");
 
         } catch (Exception e) {
             e.printStackTrace();
             response.sendRedirect("StudentDashboard.jsp?portalUpdate=error");
         } finally {
-            // Step 4: CRITICAL - Always close connections to allow the "next time" to work
+            // Step 4: Close all resources to prevent TiDB connection leaks
+            try { if (psInsert != null) psInsert.close(); } catch (Exception e) {}
             try { if (ps != null) ps.close(); } catch (Exception e) {}
             try { if (con != null) con.close(); } catch (Exception e) {}
         }
