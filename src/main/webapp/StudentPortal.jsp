@@ -92,7 +92,7 @@
             <h2>இன்றைய நேரடி வகுப்பு</h2>
             <p style="color: #888;">Live Session is ready for you</p>
             <%-- Redirect to your Jitsi integrated page instead of Google Meet --%>
-            <a href="LiveClass.jsp?room=TamilClass_<%= studentId %>" class="btn-join">Join Video Class Now</a>
+            <a href="https://meet.google.com/new" class="btn-join">Join Video Class Now</a>
         </div>
 
         <div class="card" style="border-left: 4px solid #ffd700;">
