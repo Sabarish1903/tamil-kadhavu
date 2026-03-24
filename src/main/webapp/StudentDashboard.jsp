@@ -106,7 +106,7 @@ if (role == null || !role.equalsIgnoreCase("teacher")) {
 						</td>
 						<td>
 							<%-- Jitsi Integration: Opens a unique room for each student --%>
-        					<a href="https://meet.google.com/new" target="_blank" class="btn-red btn-start">Start <span>Live</span></a>
+        					<a href="javascript:void(0);"onclick="window.open('https://meet.jit.si/TamilKadhavu_Room_<%= rs.getInt("id") %>', '_blank')" class="btn-red btn-start">Start <span>Live</span></a>
 							<a href="EditSlots.jsp?id=<%=sid%>" class="btn-action" style="margin-left: 5px;">Edit <span>Slot</span></a>
 						</td>
 					</tr>
