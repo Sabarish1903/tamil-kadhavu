@@ -47,7 +47,7 @@ public class LoginServlet extends HttpServlet {
 
                 // FIX 4: Corrected destination pages for roles
                 if ("teacher".equalsIgnoreCase(userRole)) {
-                    response.sendRedirect("TeacherDashboard.jsp"); 
+                    response.sendRedirect("StudentDashboard.jsp"); 
                 } else if ("student".equalsIgnoreCase(userRole)) {
                     response.sendRedirect("StudentPortal.jsp");
                 } else if ("admin".equalsIgnoreCase(userRole)) {
