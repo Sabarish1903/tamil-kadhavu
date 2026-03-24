@@ -105,7 +105,7 @@ if (role == null || !role.equalsIgnoreCase("teacher")) {
 							<% } %>
 						</td>
 						<td>
-							<a href="LiveClass.jsp?room=TamilClass_<%=sid%>" class="btn-action btn-start">Start <span>Live</span></a> 
+							<a href="javascript:void(0);"onclick="alert('Starting class for <%=rs.getString("name")%>... (Integration Coming Soon)')" class="btn-red">Start Live</a>
 							<a href="EditSlots.jsp?id=<%=sid%>" class="btn-action" style="margin-left: 5px;">Edit <span>Slot</span></a>
 						</td>
 					</tr>
