@@ -92,7 +92,7 @@
             <h2>இன்றைய நேரடி வகுப்பு</h2>
             <p style="color: #888;">Live Session is ready for you</p>
             <%-- Redirect to your Jitsi integrated page instead of Google Meet --%>
-            <a href="https://meet.google.com/new" class="btn-join">Join Video Class Now</a>
+            <a href="https://meet.jit.si/TamilKadhavu_Room_<%= studentId %>" target="_blank" class="btn-join">Join Class</a>
         </div>
 
         <div class="card" style="border-left: 4px solid #ffd700;">
