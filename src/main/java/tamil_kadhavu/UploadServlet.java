@@ -16,47 +16,65 @@ import javax.servlet.http.*;
     maxRequestSize = 1024 * 1024 * 50    // 50MB
 )
 public class UploadServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String studentId = request.getParameter("studentId");
-        Part filePart = request.getPart("file"); // Grabs the uploaded file
+        Part filePart = request.getPart("file"); 
         
-        // 1. Get the original filename to find the extension (.pdf or .jpg)
+        if (filePart == null || filePart.getSize() == 0) {
+            response.sendRedirect("StudentDashboard.jsp?error=no_file");
+            return;
+        }
+        
+        // 1. Get extension safely
         String fileName = filePart.getSubmittedFileName();
-        String extension = fileName.substring(fileName.lastIndexOf("."));
+        String extension = "";
+        int i = fileName.lastIndexOf('.');
+        if (i > 0) {
+            extension = fileName.substring(i);
+        }
 
-        // 2. Auto-Rename: StudentID_Date_Time.extension
+        // 2. Auto-Rename: Assignment_SID1_20260324_200000.pdf
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String newFileName = "Assignment_SID" + studentId + "_" + timeStamp + extension;
 
-        // 3. Define the Relative Path (Portable!)
+        // 3. Define the Relative Path (Render-friendly)
         String uploadPath = getServletContext().getRealPath("") + File.separator + "uploads";
         File uploadDir = new File(uploadPath);
-        if (!uploadDir.exists()) uploadDir.mkdir(); // Create folder if it doesn't exist
+        if (!uploadDir.exists()) uploadDir.mkdirs(); 
 
         String savePath = uploadPath + File.separator + newFileName;
         
+        Connection con = null;
+        PreparedStatement ps = null;
+        
         try {
-            // Save the file to the folder
+            // Save file to disk
             filePart.write(savePath);
 
-            // 4. Update Database
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tamil_kadhavu_db", "root", "root");
+            // 4. Update Database using cloud connection
+            con = DBConnection.getConnection();
             
-            // We store the relative link so the browser can find it later
+            // Link relative path for browser access
             String dbPath = "uploads/" + newFileName;
-            PreparedStatement ps = con.prepareStatement("UPDATE users SET assignment_link = ? WHERE id = ?");
+            
+            // FIX: Changed 'assignment_link' to 'assignment' to match your TiDB table structure
+            String query = "UPDATE users SET assignment = ? WHERE id = ?";
+            ps = con.prepareStatement(query);
             ps.setString(1, dbPath);
             ps.setString(2, studentId);
             ps.executeUpdate();
 
-            con.close();
             response.sendRedirect("StudentDashboard.jsp?upload=success");
             
         } catch (Exception e) {
             e.printStackTrace();
             response.sendRedirect("StudentDashboard.jsp?error=upload_failed");
+        } finally {
+            // Standard cleanup
+            try { if (ps != null) ps.close(); } catch (SQLException e) {}
+            try { if (con != null) con.close(); } catch (SQLException e) {}
         }
     }
 }
