@@ -13,48 +13,57 @@ public class StudentUploadServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Part filePart = request.getPart("file");
+        if (filePart == null || filePart.getSize() == 0) {
+            response.sendRedirect("StudentPortal.jsp?upload=nofile");
+            return;
+        }
+
         String fileName = filePart.getSubmittedFileName();
         
-        // This line finds the actual folder on your computer
+        // This finds the path on the Render server
         String uploadPath = getServletContext().getRealPath("") + File.separator + "submissions";
         
-        // AUTO-CREATE FOLDER: This prevents the error if you forgot to create it!
         File uploadDir = new File(uploadPath);
         if (!uploadDir.exists()) {
             uploadDir.mkdirs(); 
         }
 
+        Connection con = null;
+        PreparedStatement ps = null;
+
         try {
-            // Write the file to the disk
+            // 1. Write the file to the server disk
             filePart.write(uploadPath + File.separator + fileName);
             String dbPath = "submissions/" + fileName;
 
-            // Get User ID from Session
-            HttpSession session = request.getSession();
-            Object userIdObj = session.getAttribute("userId");
-            
-            if (userIdObj == null) {
+            // 2. Get User ID from Session
+            HttpSession session = request.getSession(false);
+            if (session == null || session.getAttribute("userId") == null) {
                 response.sendRedirect("Login.html");
                 return;
             }
             
-            int studentId = (Integer) userIdObj;
+            int studentId = (Integer) session.getAttribute("userId");
 
-            // Update Database
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tamil_kadhavu_db", "root", "root");
+            // 3. Update Database using cloud connection
+            con = DBConnection.getConnection();
             
-            PreparedStatement ps = con.prepareStatement("UPDATE users SET submission_link = ? WHERE id = ?");
+            // FIX: Changed 'submission_link' to 'submission' to match your DESCRIBE screenshot
+            String query = "UPDATE users SET submission = ? WHERE id = ?";
+            ps = con.prepareStatement(query);
             ps.setString(1, dbPath);
             ps.setInt(2, studentId);
             ps.executeUpdate();
             
-            con.close();
             response.sendRedirect("StudentPortal.jsp?upload=success");
 
         } catch (Exception e) {
             e.printStackTrace();
             response.sendRedirect("StudentPortal.jsp?upload=error");
+        } finally {
+            // Clean up resources
+            try { if (ps != null) ps.close(); } catch (SQLException e) {}
+            try { if (con != null) con.close(); } catch (SQLException e) {}
         }
     }
 }
