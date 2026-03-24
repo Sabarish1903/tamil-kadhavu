@@ -50,7 +50,10 @@ public class LoginServlet extends HttpServlet {
                     response.sendRedirect("TeacherDashboard.jsp"); 
                 } else if ("student".equalsIgnoreCase(userRole)) {
                     response.sendRedirect("StudentPortal.jsp");
-                } else {
+                } else if ("admin".equalsIgnoreCase(userRole)) {
+                    // Redirect to your admin dashboard file
+                    response.sendRedirect("AdminDashboard.jsp");
+                }else {
                     response.sendRedirect("index.html");
                 }
             } else {
